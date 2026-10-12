@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: minutehire-career-counselor
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: KB_DIR
+        value: /app/data/knowledge_base
+      - key: CHROMA_DIR
+        value: /app/data/chroma
+      - key: BUILD_INDEX_ON_START
+        value: "true"
+      - key: WARMUP_ON_START
+        value: "true"
